@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>倒數日曆</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding-top: 100px;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+    }
+    #countdown {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #007acc;
+    }
+  </style>
+</head>
+<body>
+  <h1>距離重要日子還有...</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // 設定目標日期
+    const targetDate = new Date("2025-09-15T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText = "今天就是重要日子！";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").innerText =
+        `${days} 天 ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000); // 每秒更新一次
+  </script>
+</body>
+</html>
